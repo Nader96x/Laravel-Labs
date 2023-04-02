@@ -18,13 +18,13 @@
         </thead>
         <tbody>
         @foreach($posts as $post)
-
+{{--            @dd($post['created_at']);--}}
             <tr>
                 <td>{{$post['id']}}</td>
                 <td>{{$post['title']}}</td>
                 <td>{{$post['description']}}</td>
                 <td>{{$post->user->name}}</td>
-                <td>{{$post['created_at']}}</td>
+                <td title="{{$post['created_at']->isoFormat('Do-MMMM-YYYY, h:mm:ss A')}}">{{$post['created_at']->diffForHumans()}}</td>
                 <td>{{$post['updated_at']}}</td>
                 <td>
                     <a href="{{route('posts.show',$post['id'])}}" class="btn btn-info">View</a>
@@ -36,7 +36,9 @@
         </tbody>
     </table>
 </div>
-
+    <div class="text-center mx-auto">
+    {{ $posts->links() }}
+    </div>
 
 
     <!-- Modal -->

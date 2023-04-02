@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+
 class PostsContoller extends Controller
 {
     private $posts = [
@@ -34,7 +35,7 @@ class PostsContoller extends Controller
         ],
     ];
     public function index(){
-        $posts = Post::all();
+        $posts = Post::paginate(5);
         return view('posts.index',['posts'=>$posts]);
     }
     public function show($id){

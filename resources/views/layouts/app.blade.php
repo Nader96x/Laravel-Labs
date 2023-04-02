@@ -22,9 +22,13 @@
             <div class="navbar-nav">
                 <a class="nav-link active" href="{{route("posts.index")}}">All Posts</a>
             </div>
-            <div class="navbar-nav">
+            <div class="navbar-nav mx-2">
                  <a class="btn btn-success" href="{{route("posts.create")}}">New</a>
             </div>
+            <div class="navbar-nav">
+                 <a class="btn btn-secondary" href="{{route("posts.restore")}}">Restore</a>
+            </div>
+
         </div>
     </div>
 </nav>

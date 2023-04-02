@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->string('comment');
-
+            $table->morphs('commentable');
             $table->timestamps();
         });
     }
@@ -25,5 +25,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('comments');
+
     }
 };

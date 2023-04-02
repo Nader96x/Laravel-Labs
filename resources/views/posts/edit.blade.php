@@ -19,9 +19,10 @@
         <div class="m-3">
             <label class="form-label">Post Creator</label>
             <select name="posted_by" class="form-control">
-                <option @if($post['posted_by']=="Nader")selected @endif value="Nader">Nader</option>
-                <option @if($post['posted_by']=="Ahmed")selected @endif value="Ahmed">Ahmed</option>
-                <option @if($post['posted_by']=="Mohamed")selected @endif value="Mohamed">Mohamed</option>
+                @foreach( $users as $user)
+                    <option @if($post['user_id']==$user['id'])selected @endif value="{{$user['id']}}">{{$user['name']}}</option>
+                @endforeach
+
             </select>
         </div>
 

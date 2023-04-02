@@ -17,9 +17,11 @@
         <div class="m-3">
             <label  class="form-label">Post Creator</label>
             <select name="posted_by" class="form-control">
-                <option value="Nader">Nader</option>
-                <option value="Ahmed">Ahmed</option>
-                <option value="Mohamed">Mohamed</option>
+                @foreach($users as $user)
+                    <option value="{{$user['id']}}">{{$user['name']}}</option>
+                @endforeach
+               {{-- <option value="Ahmed">Ahmed</option>
+                <option value="Mohamed">Mohamed</option>--}}
             </select>
         </div>
 

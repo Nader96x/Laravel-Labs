@@ -12,7 +12,7 @@
             <p>{{$post['description']}}</p>
         </div>
         <div class="card-footer">
-            <p>Posted by: {{$post['posted_by']}}</p>
+            <p>Posted by: {{$post->user->name}}</p>
             <p>Created at: {{$post['created_at']}}</p>
         </div>
     </div>

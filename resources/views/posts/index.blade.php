@@ -10,8 +10,10 @@
             <th>#</th>
             <th>Title</th>
             <th>Body</th>
-            <th>Created at</th>
+            <th>Publisher</th>
+            <th>created at</th>
             <th>Updated at</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -20,8 +22,10 @@
             <tr>
                 <td>{{$post['id']}}</td>
                 <td>{{$post['title']}}</td>
-                <td>{{$post['posted_by']}}</td>
+                <td>{{$post['description']}}</td>
+                <td>{{$post->user->name}}</td>
                 <td>{{$post['created_at']}}</td>
+                <td>{{$post['updated_at']}}</td>
                 <td>
                     <a href="{{route('posts.show',$post['id'])}}" class="btn btn-info">View</a>
                     <a href="{{route('posts.edit',$post['id'])}}" class="btn btn-primary">Edit</a>
@@ -32,6 +36,9 @@
         </tbody>
     </table>
 </div>
+
+
+
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">

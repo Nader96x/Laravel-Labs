@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +12,7 @@ class Post extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use Sluggable;
 
     protected $fillable = ['title','description','user_id'];
     public function user(){
@@ -22,6 +24,14 @@ class Post extends Model
     protected function getHumanReadableDateAttribute()
     {
         return $this->created_at->format('j-F-Y, g:i A');
+    }
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 
 

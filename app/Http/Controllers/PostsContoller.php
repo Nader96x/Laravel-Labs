@@ -24,13 +24,15 @@ class PostsContoller extends Controller
         return view('posts.create',['users'=>$users]);
     }
     public function store(StorePostRequest $request){
-//        $request->validated();
-        Post::create([
+        $post = Post::create([
             'title' => $request->title,
             'description' => $request->description,
             'user_id' => $request->posted_by,
 
         ]);
+//        $post = $post->replicate();
+//        $post->save();
+
         return redirect()->route('posts.index');
     }
     public function destroy($id){

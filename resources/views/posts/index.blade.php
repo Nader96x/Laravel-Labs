@@ -9,6 +9,7 @@
         <tr>
             <th>#</th>
             <th>Title</th>
+            <th>Slug</th>
             <th>Body</th>
             <th>Publisher</th>
             <th>created at</th>
@@ -18,10 +19,12 @@
         </thead>
         <tbody>
         @foreach($posts as $post)
+
 {{--            @dd($post['created_at']);--}}
             <tr>
                 <td>{{$post['id']}}</td>
                 <td>{{$post['title']}}</td>
+                <td>{{$post['slug']}}</td>
                 <td>{{$post['description']}}</td>
                 <td>{{$post->user->name}}</td>
                 <td title="{{$post['created_at']->isoFormat('Do-MMMM-YYYY, h:mm:ss A')}}">{{$post['created_at']->diffForHumans()}}</td>

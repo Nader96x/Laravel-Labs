@@ -60,7 +60,7 @@
         </div>
     </div>
 
-@endsection
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <form id="form-edit" method="POST">
@@ -108,3 +108,5 @@
         }
     });
 </script>
+
+@endsection

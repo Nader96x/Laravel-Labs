@@ -10,10 +10,16 @@
         <div class="m-3">
             <label class="form-label">Title</label>
             <input  name="title" type="text" class="form-control" value="{{$post['title']}}">
+            @error('title')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="m-3">
             <label  class="form-label">Description</label>
             <textarea name="description" class="form-control"  rows="3">{{$post['description']}}</textarea>
+            @error('description')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="m-3">
@@ -24,6 +30,9 @@
                 @endforeach
 
             </select>
+            @error('posted_by')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         <button class="m-3 btn btn-success">Submit</button>

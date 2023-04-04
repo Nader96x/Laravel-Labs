@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\validateThreePostsMaxPerUser;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StorePostRequest extends FormRequest
@@ -24,7 +25,10 @@ class StorePostRequest extends FormRequest
         return [
             'title' => 'required|min:3|unique:posts,title',
             'description' => 'required|min:10|max:225',
-            'posted_by' => 'required|exists:users,id',
+//            'posted_by' => 'required|exists:users,id|three_posts_max_per_user',
+            'posted_by' => ['required', 'exists:users,id', new validateThreePostsMaxPerUser],
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+
         ];
     }
     public function messages(): array

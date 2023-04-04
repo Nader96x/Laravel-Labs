@@ -24,10 +24,14 @@ class PostsContoller extends Controller
         return view('posts.create',['users'=>$users]);
     }
     public function store(StorePostRequest $request){
+        $request->only(['title','description','posted_by','image']);
+        $request->validated();
+
         $post = Post::create([
             'title' => $request->title,
             'description' => $request->description,
             'user_id' => $request->posted_by,
+
 
         ]);
 //        $post = $post->replicate();

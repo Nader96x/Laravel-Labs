@@ -13,7 +13,7 @@
             </ul>
         </div>
     @endif--}}
-    <form method="POST" action="{{route('posts.store')}}">
+    <form method="POST" action="{{route('posts.store')}}" enctype="multipart/form-data">
         @csrf
         <div class="m-3">
             <label class="form-label">Title</label>
@@ -32,6 +32,15 @@
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
+        <div class="m-3">
+            <label  class="form-label">Image</label>
+            <input  name="image" type="text" class="form-control" accept="image/*">
+            @error('image')
+            {{--            @dd($message)--}}
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
+
 
         <div class="m-3">
             <label  class="form-label">Post Creator</label>

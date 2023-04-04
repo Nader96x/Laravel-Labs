@@ -37,8 +37,12 @@
                             <a class="nav-link" href="{{ route('posts.index') }}">All Posts</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-success text-light" href="{{ route('posts.create') }}">Create Post</a>
+                            <a class="nav-link btn btn-success text-light mx-2" href="{{ route('posts.create') }}">Create Post</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-warning text-dark mx-2" href="{{ route('posts.restore') }}">Restore Posts</a>
+                        </li>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -3,7 +3,7 @@
 @section('title') Edit Post @endsection
 
 @section('content')
-    <form method="POST" action="{{route('posts.update',$post['title'])}}">
+    <form method="POST" action="{{route('posts.update',$post['title'])}}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <input type="hidden" name="id" value="{{$post['id']}}">
@@ -21,6 +21,15 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
+        <div class="m-3">
+            <label  class="form-label">Image</label>
+            @if($post['image'])
+            <p><img src="{{$post->image}}" alt="" width="250em" height="250em" ></p>
+            @endif
+            <input  name="image" type="file" class="form-control" accept="image/*">
+            @error('image')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
 
         <div class="m-3">
             <label class="form-label">Post Creator</label>
@@ -35,6 +44,6 @@
             @enderror
         </div>
 
-        <button class="m-3 btn btn-success">Submit</button>
+        <button class="m-3 btn btn-primary">Save</button>
     </form>
 @endsection

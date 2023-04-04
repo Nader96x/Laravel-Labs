@@ -96,6 +96,10 @@
                 </div>
                 <div class="modal-body">
                     <p class="post-description"></p>
+                    @if($post->image)
+                        <p><img src="{{$post->image}}" alt="{{$post['description']}}" width="250em" height="250em"></p>
+                    @endif
+                    <hr>
                     <p class="post-author"></p>
                     <p class="post-author-email"></p>
                 </div>

@@ -7,6 +7,7 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 
 class PostsContoller extends Controller
@@ -16,7 +17,8 @@ class PostsContoller extends Controller
         return view('posts.index',['posts'=>$posts]);
     }
     public function show($id){
-        $post = Post::find($id);;
+        $post = Post::find($id);
+//        $post->image = asset('storage/'.$post->image);
         return view('posts.show',['post'=>$post]);
     }
     public function create(){
@@ -26,23 +28,31 @@ class PostsContoller extends Controller
     public function store(StorePostRequest $request){
         $request->only(['title','description','posted_by','image']);
         $request->validated();
+        $post = new Post();
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->user_id = $request->posted_by;
+//        $post->image = $request->image;
+        if($request->hasFile('image')){
+            $post->image = $request->file('image')->store('images','public');
+        }
+//        dd($request->image,$post->image);
+        $post->save();
 
-        $post = Post::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'user_id' => $request->posted_by,
-
-
-        ]);
 //        $post = $post->replicate();
 //        $post->save();
-
-        return redirect()->route('posts.index');
+//        return redirect()->route('posts.index');
+        return redirect()->route('posts.show',['id'=>$post->id]);
     }
     public function destroy($id){
         $post = Post::find($id);
         if($post)
+            if ($post->image && Storage::disk('public')->exists($post->image))
+                Storage::disk('public')->delete($post->image);
             $post->delete();
+
+
+//        return redirect()->back();
         return redirect()->route('posts.index');
     }
     public function restore(){
@@ -62,9 +72,23 @@ class PostsContoller extends Controller
             $post->title = $request->title;
             $post->description = $request->description;
             $post->user_id = $request->posted_by;
+            $prev_image = $post->image?explode('storage/',$post->image)[1]:null;
+//            $post->image = $request->image;
+            if($request->hasFile('image')){
+                $post->image = $request->file('image')->store('images','public');
+            }
             $post->save();
+            if(
+                $prev_image
+                && Storage::disk('public')->exists($prev_image)
+            ){
+
+                Storage::disk('public')->delete($prev_image);
+            }
+
         }
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.show',['id'=>$request->id]);
+//        return redirect()->route('posts.index');
     }
 
     public function add_comment($id,Request $request){
@@ -95,10 +119,13 @@ class PostsContoller extends Controller
     }
     public function details($id){
         $post = Post::find($id);
+        /*if($post->image)
+            $post->image = asset('storage/'.$post->image);*/
         return response()->json([
             'post' => $post,
             'user' => $post->user,
             'comments' => $post->comments,
+
         ]);
     }
 }

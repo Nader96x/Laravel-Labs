@@ -10,6 +10,9 @@
         </div>
         <div class="card-body">
             <p>{{$post['description']}}</p>
+            @if($post->image)
+                <p><img src="{{$post->image}}" alt="{{$post['description']}}" width="250em" height="250em"></p>
+            @endif
         </div>
         <div class="card-footer">
             <p>Posted by: {{$post->user->name}}</p>

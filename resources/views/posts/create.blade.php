@@ -34,7 +34,7 @@
         </div>
         <div class="m-3">
             <label  class="form-label">Image</label>
-            <input  name="image" type="text" class="form-control" accept="image/*">
+            <input  name="image" type="file" class="form-control" accept="image/*">
             @error('image')
             {{--            @dd($message)--}}
             <div class="alert alert-danger">{{ $message }}</div>
@@ -57,6 +57,6 @@
             @enderror
         </div>
 
-        <button class="m-3 btn btn-success">Submit</button>
+        <button class="m-3 btn btn-primary">Save</button>
     </form>
 @endsection

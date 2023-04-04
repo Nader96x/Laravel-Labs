@@ -25,6 +25,7 @@ class UpdatePostRequest extends FormRequest
             'title' => 'required|min:3|unique:posts,title,'.$this->id,
             'description' => 'required|min:10|max:225',
             'posted_by' => 'required|exists:users,id',
+            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
         ];
     }
     public function messages(): array

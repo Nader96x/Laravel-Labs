@@ -104,7 +104,7 @@
                     <p class="post-author-email"></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -118,7 +118,7 @@
                 const modal = event.target;
                 modal.querySelector(".modal-title").textContent = "Post #" + postId;
 
-                // Sen'd fetch request to get post info
+                // Send fetch request to get post info
                 fetch('{{route('posts.details',':postId')}}'.replace(':postId', postId))
                     .then(function(response) {
                         if (!response.ok) {

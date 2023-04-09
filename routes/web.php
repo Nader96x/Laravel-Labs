@@ -40,7 +40,7 @@ Route::middleware(['auth'])->group(function () {
 use Laravel\Socialite\Facades\Socialite;
 
 #http://127.0.0.1:8000/auth/redirect
-Route::get('/auth/redirect', function () {
+Route::get('/auth/github', function () {
     return Socialite::driver('github')->redirect();
 });
 
@@ -63,8 +63,8 @@ Route::get('/auth/callback', function () {
 
     return redirect('/posts');
 });
-
-Route::get('/auth/google/redirect', function () {
+#http://127.0.0.1:8000/auth/google/redirect
+Route::get('/auth/google', function () {
     return Socialite::driver('google')->redirect();
 
 });
